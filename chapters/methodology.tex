@@ -8,153 +8,213 @@ This chapter outlines the methodology used to analyse and compare the environmen
  this study aims to demonstrate that they also contribute to pollution, although in different ways.
  The focus is on lifecycle emissions, including battery production, electricity generation, and fuel consumption.
 
-A quantitative data analysis approach was adopted, using real-world datasets from
+A data analysis approach was adopted, using real-world datasets from
 reputable sources such as the UK Government and the European Union \href{https://www.gov.uk/co2-and-vehicle-tax-tools}{(Government Digital Service, 2012)} . Previous studies have focused primarily on CO$_2$ emissions and air pollution caused by petrol cars, highlighting their impact on climate change.
  However, fewer studies have addressed the environmental costs of battery production and electric vehicle consumption.
 
 To provide a balanced comparison, this study examines
 CO$_2$ emissions per mile, energy consumption, and impact on the life cycle of both vehicle types.
 Data preprocessing and analysis are performed using Python, while visualization tools such
-as Tableau are used to present key findings. This methodology ensures a comprehensive
-evaluation of the environmental trade-off between petrol and electric cars.
+as Tableau are used to present key findings. 
 
-\section{Examples of the sections of a methodology chapter}
-A general report structure is summarised (suggested) in Table~\ref{tab:gen_template}. Table~\ref{tab:gen_template} describes that, in general, a typical report structure has three main parts: (1) front matter, (2) main text, and (3) end matter. %[\textbf{also notice that the preceding sentence is an example of a numbered list in a text body}]. 
-The structure of the front matter and end matter will remain the same for all the undergraduate final year project report. However, the main text varies as per the project's needs.
-\begin{table}[h!]
+The methodology of this study follows a structured, systematic process to ensure the accuracy, reliability, and comprehensiveness of data analysis and visualization. The approach is divided into distinct phases, each designed to build upon the previous step, facilitating a clear and logical progression toward answering the research question
+
+\section{Data Collection}
+This is the first step, involves gathering relevant dataset that provides insights into vehicle emissions, battery production impact, and energy consumption. To ensure data reliability, the sources are carefully selected from different well-known organizations. Figure ~\ref{fig:chart_1}
+\begin{lstlisting}[language=Python, caption={Code snippet in \LaTeX ~and  this is a Python code }, label=list:python_code_ex]
+import pandas as pd
+
+df = pd.read_csv("latestEuro6.csv", encoding="ISO-8859-1")
+
+
+#show all columns
+print(df.columns)
+\end{lstlisting}
+\begin{figure}[H]
     \centering
-    \caption{Undergraduate report template structure}
-    \label{tab:gen_template}
-    \begin{tabular}{llll}     
-        \toprule
-        \multirow{7}{3cm}{Frontmatter} 
-        & & Title Page & \\                  
-        & & Abstract &    \\          
-        & & Acknowledgements & \\                            
-        & & Table of Contents &    \\                                
-        & & List of Figures   &    \\                        
-        & & List of Tables    &    \\                
-        & & List of Abbreviations  &    \\                     
-        & &   &    \\                        
-        \multirow{7}{3cm}{Main text}
-        & Chapter 1 & Introduction   &    \\                         
-        & Chapter 2 & Literature Review   &    \\
-        & Chapter 3 & Methodology   &    \\
-        & Chapter 4 & Results    &    \\
-        & Chapter 5 & Discussion and Analysis  &    \\
-        & Chapter 6 & Conclusions and Future Work  &    \\        
-        & Chapter 7 & Refection  &    \\          
-        & &   &    \\                       
-        \multirow{2}{3cm}{End matter}
-        & & References  &    \\   
-        & & Appendices (Optional)  &    \\ 
-        & & Index (Optional)  &    \\ 
-        \bottomrule
-    \end{tabular}
-\end{table}
+    \includegraphics[scale=0.85]{figures/ColumnNames.png}
+    \caption{Snapshot Column Names \LaTeX.}
+    \label{fig:chart_1}
+\end{figure}
 
-\subsection{Example of a software/Web development main text structure}
-\label{subsec:se_chpters}
-Notice that the ``methodology'' Chapter of Software/Web development in Table~\ref{tab:soft_eng_temp} takes a standard software engineering paradigm (approach). Alternatively, these suggested sections can be the chapters of their own. Also, notice that ``Chapter 5'' in Table~\ref{tab:soft_eng_temp} is ``Testing and Validation'' which is different from the general report template mentioned in Table~\ref{tab:gen_template}. Check with your supervisor if in doubt.
-\begin{table}[h!]
-    \centering
-    \caption{Example of a software engineering-type report structure}
-    \label{tab:soft_eng_temp}
-    \begin{tabular}{lll}     
-        \toprule                   
-        Chapter 1 & Introduction   &    \\        
-        Chapter 2 & Literature Review  &    \\                   
-        Chapter 3 & Methodology   &    \\
-        &               & Requirements specifications   \\
-        &               & Analysis   \\
-        &               & Design   \\
-        &               & Implementations   \\
-        Chapter 4 & Testing and Validation  &    \\
-        Chapter 5 & Results and Discussion      &    \\
-        Chapter 6 & Conclusions and Future Work  &    \\        
-        Chapter 7 & Reflection  &    \\                          
-        \bottomrule
-    \end{tabular}
-\end{table}
+Firstly, the dataset it is not being yet clean from unnecessary data, Figure ~\ref{list:python_code_list}
 
-\subsection{Example of an algorithm analysis main text structure}
-Some project might involve the implementation of a state-of-the-art algorithm and its performance analysis and comparison with other algorithms. In that case, the suggestion in Table~\ref{tab:algo_temp} may suit you the best. 
-\begin{table}[h!]
-    \centering
-    \caption{Example of an algorithm analysis type report structure}
-    \label{tab:algo_temp}
-    \begin{tabular}{lll}     
-        \toprule                   
-        Chapter 1 & Introduction  &    \\        
-        Chapter 2 & Literature Review  &    \\                
-        Chapter 3 & Methodology   &    \\
-        &               & Algorithms descriptions  \\
-        &               & Implementations   \\
-        &               & Experiments design   \\
-        Chapter 4 & Results       &  \\
-        Chapter 5 & Discussion and Analysis  &    \\
-        Chapter 6 & Conclusion and Future Work  &    \\        
-        Chapter 7 & Reflection  &    \\          
-        \bottomrule
-    \end{tabular}
-\end{table}
+\begin{lstlisting}[language=Python, caption={Code snippet in \LaTeX ~and  this is a Python code, removind unnesesary data }, label=list:python_code_list]
+import pandas as pd
 
-\subsection{Example of an application type main text structure}
-If you are applying some algorithms/tools/technologies on some problems/datasets/etc., you may use the methodology section prescribed in Table~\ref{tab:app_temp}.  
-\begin{table}[h!]
-    \centering
-    \caption{Example of an application type report structure}
-    \label{tab:app_temp}
-    \begin{tabular}{lll}     
-        \toprule                   
-        Chapter 1 & Introduction  &    \\        
-        Chapter 2 & Literature Review  &    \\                
-        Chapter 3 & Methodology   &    \\
-        &               & Problems (tasks) descriptions  \\
-        &               & Algorithms/tools/technologies/etc. descriptions  \\        
-        &               & Implementations   \\
-        &               & Experiments design and setup   \\
-        Chapter 4 & Results       &  \\
-        Chapter 5 & Discussion and Analysis  &    \\
-        Chapter 6 & Conclusion and Future Work  &    \\        
-        Chapter 7 & Reflection  &    \\          
-        \bottomrule
-    \end{tabular}
-\end{table}
+df = pd.read_csv("latestEuro6-copy.csv", encoding="ISO-8859-1")
 
-\subsection{Example of a science lab-type main text structure}
-If you are doing a science lab experiment type of project, you may use the  methodology section suggested in Table~\ref{tab:lab_temp}. In this kind of project, you may refer to the ``Methodology'' section as ``Materials and Methods.''
-\begin{table}[h!]
-    \centering
-    \caption{Example of a science lab experiment-type report structure}
-    \label{tab:lab_temp}
-    \begin{tabular}{lll}     
-        \toprule                   
-        Chapter 1 & Introduction  &    \\        
-        Chapter 2 & Literature Review  &    \\                
-        Chapter 3 & Materials and Methods   &    \\
-        &               & Problems (tasks) description  \\
-        &               & Materials \\        
-        &               & Procedures  \\                
-        &               & Implementations   \\
-        &               & Experiment set-up   \\
-        Chapter 4 & Results       &  \\
-        Chapter 5 & Discussion and Analysis  &    \\
-        Chapter 6 & Conclusion and Future Work  &    \\        
-        Chapter 7 & Reflection  &    \\          
-        \bottomrule
-    \end{tabular}
-\end{table}
+df = df.drop(
+    columns=[
+        "Model",
+        "Description",
+        "Transmission",
+        "Manual or Automatic",
+        "Powertrain",
+        "Maximum range (Km)",
+        "Maximum range (Miles)",
+        "Euro Standard",
+        "Diesel VED Supplement",
+        "Testing Scheme",
+        "WLTP Imperial Low",
+        "WLTP Imperial Medium",
+        "WLTP Imperial High",
+        "WLTP Imperial Extra High",
+        "WLTP Imperial Combined",
+        "WLTP Imperial Combined (Weighted)",
+        "WLTP Metric Low",
+        "WLTP Metric Medium",
+        "WLTP Metric High",
+        "WLTP Metric Extra High",
+        "WLTP Metric Combined",
+        "WLTP Metric Combined (Weighted)",
+        "WLTP CO2",
+        "WLTP CO2 Weighted",
+        "Equivalent All Electric Range Miles",
+        "Equivalent All Electric Range KM",
+        "Electric Range City Miles",
+        "Electric Range City Km",
+        "Emissions NOx [mg/km]",
+        "THC + NOx Emissions [mg/km]",
+        "Particulates [No.] [mg/km]",
+        "RDE NOx Urban",
+        "RDE NOx Combined",
+        "Date of change",
+        "Unnamed: 44",
+    ]
+)
 
-\section{Example of an Equation in \LaTeX}
-Eq.~\ref{eq:eq_example} [note that this is an example of an equation's in-text citation] is an example of an equation in \LaTeX. In Eq.~\eqref{eq:eq_example}, $ s $ is the mean of elements $ x_i \in \mathbf{x} $: 
+\end{lstlisting}
 
-\begin{equation}
-\label{eq:eq_example} % label used to refer the eq in text
-s = \frac{1}{N} \sum_{i = 1}^{N} x_i. 
-\end{equation}
 
-Have you noticed that all the variables of the equation are defined using the \textbf{in-text} maths command \$.\$, and Eq.~\eqref{eq:eq_example} is treated as a part of the sentence with proper punctuation? Always treat an equation or expression as a part of the sentence. 
+
+
+
+% \begin{table}[h!]
+%     \centering
+%     \caption{Undergraduate report template structure}
+%     \label{tab:gen_template}
+%     \begin{tabular}{llll}     
+%         \toprule
+%         \multirow{7}{3cm}{Frontmatter} 
+%         & & Title Page & \\                  
+%         & & Abstract &    \\          
+%         & & Acknowledgements & \\                            
+%         & & Table of Contents &    \\                                
+%         & & List of Figures   &    \\                        
+%         & & List of Tables    &    \\                
+%         & & List of Abbreviations  &    \\                     
+%         & &   &    \\                        
+%         \multirow{7}{3cm}{Main text}
+%         & Chapter 1 & Introduction   &    \\                         
+%         & Chapter 2 & Literature Review   &    \\
+%         & Chapter 3 & Methodology   &    \\
+%         & Chapter 4 & Results    &    \\
+%         & Chapter 5 & Discussion and Analysis  &    \\
+%         & Chapter 6 & Conclusions and Future Work  &    \\        
+%         & Chapter 7 & Refection  &    \\          
+%         & &   &    \\                       
+%         \multirow{2}{3cm}{End matter}
+%         & & References  &    \\   
+%         & & Appendices (Optional)  &    \\ 
+%         & & Index (Optional)  &    \\ 
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
+% % \begin{table}[h!]
+% %     \centering
+% %     \caption{Example of a software engineering-type report structure}
+% %     \label{tab:soft_eng_temp}
+% %     \begin{tabular}{lll}     
+% %         \toprule                   
+% %         Chapter 1 & Introduction   &    \\        
+% %         Chapter 2 & Literature Review  &    \\                   
+% %         Chapter 3 & Methodology   &    \\
+% %         &               & Requirements specifications   \\
+% %         &               & Analysis   \\
+% %         &               & Design   \\
+% %         &               & Implementations   \\
+% %         Chapter 4 & Testing and Validation  &    \\
+% %         Chapter 5 & Results and Discussion      &    \\
+% %         Chapter 6 & Conclusions and Future Work  &    \\        
+% %         Chapter 7 & Reflection  &    \\                          
+% %         \bottomrule
+% %     \end{tabular}
+% % \end{table}
+
+% \begin{table}[h!]
+%     \centering
+%     \caption{Example of an algorithm analysis type report structure}
+%     \label{tab:algo_temp}
+%     \begin{tabular}{lll}     
+%         \toprule                   
+%         Chapter 1 & Introduction  &    \\        
+%         Chapter 2 & Literature Review  &    \\                
+%         Chapter 3 & Methodology   &    \\
+%         &               & Algorithms descriptions  \\
+%         &               & Implementations   \\
+%         &               & Experiments design   \\
+%         Chapter 4 & Results       &  \\
+%         Chapter 5 & Discussion and Analysis  &    \\
+%         Chapter 6 & Conclusion and Future Work  &    \\        
+%         Chapter 7 & Reflection  &    \\          
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
+% \begin{table}[h!]
+%     \centering
+%     \caption{Example of an application type report structure}
+%     \label{tab:app_temp}
+%     \begin{tabular}{lll}     
+%         \toprule                   
+%         Chapter 1 & Introduction  &    \\        
+%         Chapter 2 & Literature Review  &    \\                
+%         Chapter 3 & Methodology   &    \\
+%         &               & Problems (tasks) descriptions  \\
+%         &               & Algorithms/tools/technologies/etc. descriptions  \\        
+%         &               & Implementations   \\
+%         &               & Experiments design and setup   \\
+%         Chapter 4 & Results       &  \\
+%         Chapter 5 & Discussion and Analysis  &    \\
+%         Chapter 6 & Conclusion and Future Work  &    \\        
+%         Chapter 7 & Reflection  &    \\          
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
+% \begin{table}[h!]
+%     \centering
+%     \caption{Example of a science lab experiment-type report structure}
+%     \label{tab:lab_temp}
+%     \begin{tabular}{lll}     
+%         \toprule                   
+%         Chapter 1 & Introduction  &    \\        
+%         Chapter 2 & Literature Review  &    \\                
+%         Chapter 3 & Materials and Methods   &    \\
+%         &               & Problems (tasks) description  \\
+%         &               & Materials \\        
+%         &               & Procedures  \\                
+%         &               & Implementations   \\
+%         &               & Experiment set-up   \\
+%         Chapter 4 & Results       &  \\
+%         Chapter 5 & Discussion and Analysis  &    \\
+%         Chapter 6 & Conclusion and Future Work  &    \\        
+%         Chapter 7 & Reflection  &    \\          
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
+% \section{Example of an Equation in \LaTeX}
+% Eq.~\ref{eq:eq_example} [note that this is an example of an equation's in-text citation] is an example of an equation in \LaTeX. In Eq.~\eqref{eq:eq_example}, $ s $ is the mean of elements $ x_i \in \mathbf{x} $: 
+
+% \begin{equation}
+% \label{eq:eq_example} % label used to refer the eq in text
+% s = \frac{1}{N} \sum_{i = 1}^{N} x_i. 
+% \end{equation}
+
+% Have you noticed that all the variables of the equation are defined using the \textbf{in-text} maths command \$.\$, and Eq.~\eqref{eq:eq_example} is treated as a part of the sentence with proper punctuation? Always treat an equation or expression as a part of the sentence. 
 
 \section{Example of a Figure in \LaTeX}
 Figure~\ref{fig:chart_a} is an example of a figure in \LaTeX. For more details, check the link:
