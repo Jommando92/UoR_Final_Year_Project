@@ -3,6 +3,8 @@
 \chapter{Methodology}
 \label{ch:method} % Label for method chapter
 
+\section{Description}
+
 This chapter outlines the methodology used to analyse and compare the environmental impact of electric and petrol cars.
  Although electric vehicles (EVs) are often perceived as environmentally friendly,
  this study aims to demonstrate that they also contribute to pollution, although in different ways.
@@ -18,9 +20,27 @@ Data preprocessing and analysis are performed using Python, while visualization 
 as Tableau are used to present key findings. 
 
 The methodology of this study follows a structured, systematic process to ensure the accuracy, reliability, and comprehensiveness of data analysis and visualization. The approach is divided into distinct phases, each designed to build upon the previous step, facilitating a clear and logical progression toward answering the research question
+\clearpage
 
 \section{Data Collection}
-This is the first step, involves gathering relevant dataset that provides insights into vehicle emissions, battery production impact, and energy consumption. To ensure data reliability, the sources are carefully selected from different well-known organizations. Figure ~\ref{fig:chart_1}
+ The first step of this study involves gathering relevant information and datasets that provides insights into vehicle emissions, battery production impact, and energy consumption. To ensure data reliability, the sources are carefully selected from different well-known organizations. 
+ \begin{itemize}
+     \item \textbf{Vehicle emission and Energy Consumption} - This dataset \href{https://www.gov.uk/co2-and-vehicle-tax-tools}{(Government Digital Service, 2012)} it shows every vehicle and their emissions, petrol electricity and hybrid. This will help understanding the amount of CO$_2$ created by each type of Fuel. Additionally, this table will indicate how much energy consumption is used. 
+ \end{itemize}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{figures/Vehicle Emissions.png}
+    \caption{\textit{Snapshot Clean data new table \LaTeX}.}
+    \label{fig:chart_1}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Battery Production} - 
+\end{itemize}
+ 
+
+
+\section{Data Processing}
 \begin{lstlisting}[language=Python, caption={Code snippet in \LaTeX ~and  this is a Python code }, label=list:python_code_ex]
 import pandas as pd
 
@@ -37,184 +57,40 @@ print(df.columns)
     \label{fig:chart_1}
 \end{figure}
 
-Firstly, the dataset it is not being yet clean from unnecessary data, Figure ~\ref{list:python_code_list}
+Firstly, the dataset it is not clean from unnecessary data, Figure ~\ref{list:python_code_list}. This shows the list of all the columns that the dataset have.
 
 \begin{lstlisting}[language=Python, caption={Code snippet in \LaTeX ~and  this is a Python code, removind unnesesary data }, label=list:python_code_list]
 import pandas as pd
 
-df = pd.read_csv("latestEuro6-copy.csv", encoding="ISO-8859-1")
+df = pd.read_csv("latestEuro6.csv", encoding="ISO-8859-1")
 
-df = df.drop(
-    columns=[
-        "Model",
-        "Description",
-        "Transmission",
-        "Manual or Automatic",
-        "Powertrain",
-        "Maximum range (Km)",
-        "Maximum range (Miles)",
-        "Euro Standard",
-        "Diesel VED Supplement",
-        "Testing Scheme",
-        "WLTP Imperial Low",
-        "WLTP Imperial Medium",
-        "WLTP Imperial High",
-        "WLTP Imperial Extra High",
-        "WLTP Imperial Combined",
-        "WLTP Imperial Combined (Weighted)",
-        "WLTP Metric Low",
-        "WLTP Metric Medium",
-        "WLTP Metric High",
-        "WLTP Metric Extra High",
-        "WLTP Metric Combined",
-        "WLTP Metric Combined (Weighted)",
-        "WLTP CO2",
-        "WLTP CO2 Weighted",
-        "Equivalent All Electric Range Miles",
-        "Equivalent All Electric Range KM",
-        "Electric Range City Miles",
-        "Electric Range City Km",
-        "Emissions NOx [mg/km]",
-        "THC + NOx Emissions [mg/km]",
-        "Particulates [No.] [mg/km]",
-        "RDE NOx Urban",
-        "RDE NOx Combined",
-        "Date of change",
-        "Unnamed: 44",
-    ]
-)
+# Remove unnecessary columns
+df.drop(columns=["Unnamed: 44", "Date of change", "Description"], inplace=True)
+
+# Fill missing electric range values with the median
+df["Maximum range (Km)"].fillna(df["Maximum range (Km)"].median(), inplace=True)
+df["Electric energy consumption Miles/kWh"].fillna(df["Electric energy consumption Miles/kWh"].median(), inplace=True)
+
+df.drop_duplicates(inplace=True)
+
+# Save the cleaned data to a new CSV file
+df.to_csv("cleaned_dataset6.csv", index=False)
 
 \end{lstlisting}
 
+On this Figure \ref{list:python_code_list}, it shows the step by step that it took to clean and optimize the dataset, while keeping the important data, that will be use to demonstrate the theory. By removing empty and duplicates, removing unnecessary columns data, and adding on the missing values the median, will give us an approximation of how much are electric cars compare to Petrol car when comparing about environmental impact.
 
 
+After all the cleaning process and the optimization of the dataset, it will look like this:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{figures/CleanData.png}
+    \caption{Snapshot Clean data new table \LaTeX.}
+    \label{fig:chart_2}
+\end{figure}
 
-
-% \begin{table}[h!]
-%     \centering
-%     \caption{Undergraduate report template structure}
-%     \label{tab:gen_template}
-%     \begin{tabular}{llll}     
-%         \toprule
-%         \multirow{7}{3cm}{Frontmatter} 
-%         & & Title Page & \\                  
-%         & & Abstract &    \\          
-%         & & Acknowledgements & \\                            
-%         & & Table of Contents &    \\                                
-%         & & List of Figures   &    \\                        
-%         & & List of Tables    &    \\                
-%         & & List of Abbreviations  &    \\                     
-%         & &   &    \\                        
-%         \multirow{7}{3cm}{Main text}
-%         & Chapter 1 & Introduction   &    \\                         
-%         & Chapter 2 & Literature Review   &    \\
-%         & Chapter 3 & Methodology   &    \\
-%         & Chapter 4 & Results    &    \\
-%         & Chapter 5 & Discussion and Analysis  &    \\
-%         & Chapter 6 & Conclusions and Future Work  &    \\        
-%         & Chapter 7 & Refection  &    \\          
-%         & &   &    \\                       
-%         \multirow{2}{3cm}{End matter}
-%         & & References  &    \\   
-%         & & Appendices (Optional)  &    \\ 
-%         & & Index (Optional)  &    \\ 
-%         \bottomrule
-%     \end{tabular}
-% \end{table}
-
-% % \begin{table}[h!]
-% %     \centering
-% %     \caption{Example of a software engineering-type report structure}
-% %     \label{tab:soft_eng_temp}
-% %     \begin{tabular}{lll}     
-% %         \toprule                   
-% %         Chapter 1 & Introduction   &    \\        
-% %         Chapter 2 & Literature Review  &    \\                   
-% %         Chapter 3 & Methodology   &    \\
-% %         &               & Requirements specifications   \\
-% %         &               & Analysis   \\
-% %         &               & Design   \\
-% %         &               & Implementations   \\
-% %         Chapter 4 & Testing and Validation  &    \\
-% %         Chapter 5 & Results and Discussion      &    \\
-% %         Chapter 6 & Conclusions and Future Work  &    \\        
-% %         Chapter 7 & Reflection  &    \\                          
-% %         \bottomrule
-% %     \end{tabular}
-% % \end{table}
-
-% \begin{table}[h!]
-%     \centering
-%     \caption{Example of an algorithm analysis type report structure}
-%     \label{tab:algo_temp}
-%     \begin{tabular}{lll}     
-%         \toprule                   
-%         Chapter 1 & Introduction  &    \\        
-%         Chapter 2 & Literature Review  &    \\                
-%         Chapter 3 & Methodology   &    \\
-%         &               & Algorithms descriptions  \\
-%         &               & Implementations   \\
-%         &               & Experiments design   \\
-%         Chapter 4 & Results       &  \\
-%         Chapter 5 & Discussion and Analysis  &    \\
-%         Chapter 6 & Conclusion and Future Work  &    \\        
-%         Chapter 7 & Reflection  &    \\          
-%         \bottomrule
-%     \end{tabular}
-% \end{table}
-
-% \begin{table}[h!]
-%     \centering
-%     \caption{Example of an application type report structure}
-%     \label{tab:app_temp}
-%     \begin{tabular}{lll}     
-%         \toprule                   
-%         Chapter 1 & Introduction  &    \\        
-%         Chapter 2 & Literature Review  &    \\                
-%         Chapter 3 & Methodology   &    \\
-%         &               & Problems (tasks) descriptions  \\
-%         &               & Algorithms/tools/technologies/etc. descriptions  \\        
-%         &               & Implementations   \\
-%         &               & Experiments design and setup   \\
-%         Chapter 4 & Results       &  \\
-%         Chapter 5 & Discussion and Analysis  &    \\
-%         Chapter 6 & Conclusion and Future Work  &    \\        
-%         Chapter 7 & Reflection  &    \\          
-%         \bottomrule
-%     \end{tabular}
-% \end{table}
-
-% \begin{table}[h!]
-%     \centering
-%     \caption{Example of a science lab experiment-type report structure}
-%     \label{tab:lab_temp}
-%     \begin{tabular}{lll}     
-%         \toprule                   
-%         Chapter 1 & Introduction  &    \\        
-%         Chapter 2 & Literature Review  &    \\                
-%         Chapter 3 & Materials and Methods   &    \\
-%         &               & Problems (tasks) description  \\
-%         &               & Materials \\        
-%         &               & Procedures  \\                
-%         &               & Implementations   \\
-%         &               & Experiment set-up   \\
-%         Chapter 4 & Results       &  \\
-%         Chapter 5 & Discussion and Analysis  &    \\
-%         Chapter 6 & Conclusion and Future Work  &    \\        
-%         Chapter 7 & Reflection  &    \\          
-%         \bottomrule
-%     \end{tabular}
-% \end{table}
-
-% \section{Example of an Equation in \LaTeX}
-% Eq.~\ref{eq:eq_example} [note that this is an example of an equation's in-text citation] is an example of an equation in \LaTeX. In Eq.~\eqref{eq:eq_example}, $ s $ is the mean of elements $ x_i \in \mathbf{x} $: 
-
-% \begin{equation}
-% \label{eq:eq_example} % label used to refer the eq in text
-% s = \frac{1}{N} \sum_{i = 1}^{N} x_i. 
-% \end{equation}
-
-% Have you noticed that all the variables of the equation are defined using the \textbf{in-text} maths command \$.\$, and Eq.~\eqref{eq:eq_example} is treated as a part of the sentence with proper punctuation? Always treat an equation or expression as a part of the sentence. 
+Having the dataset almost ready for the data analysis of the data.
+            
 
 \section{Example of a Figure in \LaTeX}
 Figure~\ref{fig:chart_a} is an example of a figure in \LaTeX. For more details, check the link:
