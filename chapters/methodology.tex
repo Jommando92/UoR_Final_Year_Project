@@ -1,10 +1,46 @@
 % replace all text with your own text.
 % in this template few examples are mention
-\chapter{Material and Methods}
+\chapter{Methodology}
 \label{ch:method} % Label for method chapter
 
 
-\section{Research Approach}
+
+
+\section{Data Collection}
+ The first step of this study involves gathering relevant information and datasets that provides insights into vehicle emissions, battery production impact, and energy consumption. \\ 
+\\
+
+% inser a paragraph ins rtelation of my data colleciton vs ethic, show my ethics, but not neet to tell why 3.1.1 Ethic, 3.1.2 daat cources.3.1.3 data clenasing
+
+\subsection{Ethics}
+\subsection{Data Sources}
+
+
+
+ To ensure data reliability, the sources are carefully selected from different well-known organizations. 
+ \begin{itemize}
+     \item \textbf{Vehicle emission and Energy Consumption} - This dataset \href{https://www.gov.uk/co2-and-vehicle-tax-tools}{(Government Digital Service, 2012)} includes comprehensive details on CO$_2$ emissions, NOx emissions, hydrocarbon emissions, and other pollutants for both petrol and electric vehicles. Additionally, it provides energy consumption figures, with electric vehicles measured in miles per kWh and Wh/km, while petrol cars include fuel efficiency under various driving conditions. This dataset helps in understanding the environmental footprint of different vehicle types by comparing energy efficiency, pollutant emissions, and range capabilities. Furthermore, it allows for a quantitative analysis of sustainability by examining lifecycle emissions and energy use trends.
+ \end{itemize}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.38]{figures/Vehicle Emissions.png}
+    \caption{\textit{Snapshot Clean data new table \LaTeX}.}
+    \label{fig:chart_1}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Production and Disposal of Batteries} - This part of data finding comprehend, the most important part of the research, demonstrating that electric produce same damage as petrol affect on the environment. The production of batteries are increasing with the production of vehicles. Meaning that batteries become recyclables, after the life-time of the battery passes this can go in two different ways \href{https://www.sciencedirect.com/science/article/pii/S092134492200012X}{(Arshad et al., 2022)}, either goes to recycle where the internal parts are prepare for a new battery or this goes in to a pile of batteries creating energy storage for charging points.
+\end{itemize}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.38]{figures/BatteryInfo.png}
+    \caption{\textit{Snapshot Battery Information \LaTeX}.}
+    \label{fig:chart_2}
+\end{figure}
+
+
+\section{Design of the Data Analysis}
 This chapter outlines the methodology used to analyse and compare the environmental impact of electric and petrol cars.
  Although electric vehicles (EVs) are often perceived as environmentally friendly,
  this study aims to demonstrate that they also contribute to pollution, but in different ways.
@@ -23,28 +59,13 @@ the similarities of this. \\
 The methodology of this study follows a structured, systematic process to ensure the accuracy, reliability, and comprehensiveness of data analysis and visualization. The approach is divided into distinct phases, each designed to build upon the previous step, facilitating a clear and logical progression toward answering the research question
 \clearpage
 
-\section{Data Collection}
- The first step of this study involves gathering relevant information and datasets that provides insights into vehicle emissions, battery production impact, and energy consumption. \\ 
- To ensure data reliability, the sources are carefully selected from different well-known organizations. 
- \begin{itemize}
-     \item \textbf{Vehicle emission and Energy Consumption} - This dataset \href{https://www.gov.uk/co2-and-vehicle-tax-tools}{(Government Digital Service, 2012)} includes comprehensive details on CO$_2$ emissions, NOx emissions, hydrocarbon emissions, and other pollutants for both petrol and electric vehicles. Additionally, it provides energy consumption figures, with electric vehicles measured in miles per kWh and Wh/km, while petrol cars include fuel efficiency under various driving conditions. This dataset helps in understanding the environmental footprint of different vehicle types by comparing energy efficiency, pollutant emissions, and range capabilities. Furthermore, it allows for a quantitative analysis of sustainability by examining lifecycle emissions and energy use trends.
- \end{itemize}
-
- \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.38]{figures/Vehicle Emissions.png}
-    \caption{\textit{Snapshot Clean data new table \LaTeX}.}
-    \label{fig:chart_1}
-\end{figure}
-\begin{itemize}
-    \item \textbf{Production and Disposal of Batteries} - This part of data finding comprehend, the most important part of the research, demonstrating that electric produce same damage as petrol affect on the environment. The production of batteries are increasing with the production of vehicles. Meaning that batteries become recyclables, after the life-time of the battery passes this can go in two different ways \href{https://www.sciencedirect.com/science/article/pii/S092134492200012X}{(Arshad et al., 2022)}, either goes to recycle where the internal parts are prepare for a new battery or this goes in to a pile of batteries creating energy storage for charging points.
-\end{itemize}
+% 3.2 and 3.3 will merge 
 
 \clearpage
  
 
 
-\section{Data Processing}
+\section{Implementation}
 \begin{lstlisting}[language=Python, caption={Code snippet in \LaTeX ~and  this is a Python code }, label=list:python_code_ex]
 import pandas as pd
 
@@ -58,10 +79,12 @@ print(df.columns)
     \centering
     \includegraphics[scale=0.85]{figures/ColumnNames.png}
     \caption{\textit{Snapshot Column Names \LaTeX}.}
-    \label{fig:chart_1}
+    \label{fig:chart_3}
 \end{figure}
 
-Firstly, the dataset it is not clean from unnecessary data, Figure ~\ref{list:python_code_list}. This shows the list of all the columns that the dataset have.
+\clearpage
+
+Firstly, the dataset it is not clean and still have blacks spaces, or NaN ,also we need to remove data that it is not for the research to have an optimal and clear dataset for visual information, Figure ~\ref{list:python_code_list}. This shows the list of all the columns that the dataset have.
 
 \begin{lstlisting}[language=Python, caption={Code snippet in \LaTeX ~and  this is a Python code, removind unnesesary data }, label=list:python_code_list]
 import pandas as pd
